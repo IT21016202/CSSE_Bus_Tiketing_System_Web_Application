@@ -26,6 +26,30 @@ import ViewTimetablesBasedOnStatus from "./components/ViewTimetablesBasedOnStatu
 import NotFound from "./components/NotFound";
 import DayPassMansgement from "./components/DayPassMansgement";
 
+import HomePage from "./pages/HomePage";
+
+import UserRegister from "./pages/UserRegisterPage";
+
+import TimeTablePage from "./pages/TimeTablePage";
+import ViewTimeTablePage from "./pages/ViewTimeTablePage";
+import AddTimeTablePage from "./pages/AddTimeTablePage";
+
+import BusPage from "./pages/BusPage";
+import ViewBusPage from "./pages/ViewBusPage";
+import AddBusPage from "./pages/AddBusPage";
+
+import RoutePage from "./pages/RoutePage";
+import ViewRoutePage from "./pages/ViewRoutePage";
+import AddRoutePage from "./pages/AddRoutePage";
+
+import DayPassPage from "./pages/DayPassPage";
+
+import SmartCardPage from "./pages/SmartCardPage";
+
+import ReportPage from "./pages/ReportPage";
+import ViewBusStatusPage from "./pages/ViewBusStatusPage";
+import ViewTimeTableStatusPage from "./pages/ViewTimeTableStatusPage";
+
 //Amisha
 import CreditTransactions from "./components/CreditTransactions";
 import AddCredit from "./components/AddCredit";
@@ -38,7 +62,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <div style={{ width: "20%", float: "left" }}>
+      {/* <div style={{ width: "20%", float: "left" }}>
         <SideBar />
       </div>
       <div style={{ width: "80%", float: "right" }}>
@@ -72,7 +96,35 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
-      </div>
+      </div> */}
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<UserRegister />} />
+        <Route path="/timetable" element={<TimeTablePage />} />
+        <Route path="/viewtimetable" element={<ViewTimeTablePage />} />
+        <Route path="/planschedule" element={<AddTimeTablePage />} />
+        <Route path="/bus" element={<BusPage />} />
+        <Route path="/viewbus" element={<ViewBusPage />} />
+        <Route path="/addbus" element={<AddBusPage />} />
+        z<Route path="/route" element={<RoutePage />} />
+        <Route path="/viewroute" element={<ViewRoutePage />} />
+        <Route path="/addroute" element={<AddRoutePage />} />
+        <Route path="/dayPass" element={<DayPassPage />} />
+        <Route path="/smartCard" element={<SmartCardPage />} />
+        <Route path="/report" element={<ReportPage />} />
+        <Route path="/viewBusStatus" element={<ViewBusStatusPage />} />
+        <Route
+          path="/viewTimeTableStatus"
+          element={<ViewTimeTableStatusPage />}
+        />
+        <Route path="/creditTransactions" element={<CreditTransactions />} />
+        <Route path="/addCredit" element={<AddCredit />} />
+        <Route path="/creditHistory" element={<CreditHistory />} />
+        <Route path="/overcrowdView" element={<OvercrowdView />} />
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
     </BrowserRouter>
   );
 }

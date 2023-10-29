@@ -2,44 +2,41 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const SideBar = () => {
-    
-    const user = localStorage.getItem('user-transport');
-    console.log('side bar', user)
+  const user = localStorage.getItem("user-transport");
+  console.log("side bar", user);
 
   return (
     <div>
-      {user && (
-        <ul style={ul}>
-          <Link style={{ textDecoration: "none" }} to="/timetable">
-            <li style={li}>Time Table</li>
-          </Link>
-          <Link style={{ textDecoration: "none" }} to="/bus">
-            <li style={li}>Bus Management</li>
-          </Link>
-          <Link style={{ textDecoration: "none" }} to="/route">
-            <li style={li}>Route Management</li>
-          </Link>
-          <Link style={{ textDecoration: "none" }} to="/dayPassManagement">
-            {" "}
-            <li style={li}>Day Pass Management</li>
-          </Link>
-          <Link style={{ textDecoration: "none" }} to="/route">
-            <li style={li}>Smart Card Management</li>
-          </Link>
-          <Link style={{ textDecoration: "none" }} to="report">
-            {" "}
-            <li style={li}>Reports</li>
-          </Link>
-          <Link style={{ textDecoration: "none" }} to="/creditTransactions">
-            {" "}
-            <li style={li}>Credit Transactions</li>
-          </Link>
-          {/* <Link style={{ textDecoration: "none" }} to="/overcrowdView">
+      <ul style={ul}>
+        <Link style={{ textDecoration: "none" }} to="/timetable">
+          <li style={li}>Time Table</li>
+        </Link>
+        <Link style={{ textDecoration: "none" }} to="/bus">
+          <li style={li}>Bus Management</li>
+        </Link>
+        <Link style={{ textDecoration: "none" }} to="/route">
+          <li style={li}>Route Management</li>
+        </Link>
+        <Link style={{ textDecoration: "none" }} to="/dayPass">
+          {" "}
+          <li style={li}>Day Pass Management</li>
+        </Link>
+        <Link style={{ textDecoration: "none" }} to="/smartCard">
+          <li style={li}>Smart Card Management</li>
+        </Link>
+        <Link style={{ textDecoration: "none" }} to="/report">
+          {" "}
+          <li style={li}>Reports</li>
+        </Link>
+        <Link style={{ textDecoration: "none" }} to="/creditTransactions">
+          {" "}
+          <li style={li}>Credit Transactions</li>
+        </Link>
+        {/* <Link style={{ textDecoration: "none" }} to="/overcrowdView">
             {" "}
             <li style={li}>Over Crowd View</li>
           </Link> */}
-        </ul>
-      )}
+      </ul>
     </div>
   );
 };
