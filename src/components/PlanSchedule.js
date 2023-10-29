@@ -1,20 +1,18 @@
-
 import React, { useEffect, useState } from 'react';
-import { getDatabase, ref, set, get } from 'firebase/database';
+import { getDatabase, ref, set, get, push } from 'firebase/database';
 
 function PlanSchedule() {
 
     const [routeNumbers, setRouteNumbers] = useState([]) // array of objects
     const [busNumbers, setBusNumbers] = useState([]) // array of objects
-
-    const [selectedBusNumber, setSelectedBusNumber] = useState('') // array of objects
-    const [selectedRouteNumber, setSelectedRouteNumber] = useState('') // array of objects
-
-    const [timetableID, setTimetableID] = useState('');
+    const [selectedBusNumber, setSelectedBusNumber] = useState('') 
+    const [selectedRouteNumber, setSelectedRouteNumber] = useState('')
+    //const [timetableID, setTimetableID] = useState('');
     const [startTime, setStartTime] = useState('');
     const [stopTime, setStopTime] = useState('');
-   
     const [charge, setCharge] = useState('');
+    const [strartlocation, setStrartlocation] = useState('');
+    const [stoplocation, setStoplocation] = useState('');
 
     useEffect(() => {
         const database = getDatabase();
@@ -66,19 +64,22 @@ function PlanSchedule() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const database = getDatabase();
-        const scheduleRef = ref(database, 'TimeTable/' + timetableID);
+        const scheduleRef = ref(database, 'TimeTable/');
+        const newScheduleRef = push(scheduleRef);
         const scheduleData = {
-            TimetableID: timetableID,
+            TimetableID: newScheduleRef.key,
             RouteNumber: selectedRouteNumber,
             StartTime: startTime,
             StopTime: stopTime,
             BusNumber: selectedBusNumber,
             Charge: charge,
+            StartLocation: strartlocation,
+            StopLocation: stoplocation,
             Status: 'Not Delayed',
             CreatedAt: new Date().toString(),
             UpdatedAt: new Date().toString(),
         };
-        set(scheduleRef, scheduleData)
+        set(newScheduleRef, scheduleData)
             .then(() => {
                 console.log('Data set to DB');
                 alert("Schedule Added Successfully!");
@@ -102,7 +103,7 @@ function PlanSchedule() {
             <h1 style={title}>Plan a Schedule</h1>
             
             <div style={inputDiv}>
-                <input style={inputBox} type="text" placeholder="Timetable ID" required onChange={(e)=>{setTimetableID(e.target.value)}}/>
+                {/* <input style={inputBox} type="text" placeholder="Timetable ID" required onChange={(e)=>{setTimetableID(e.target.value)}}/> */}
                 <input style={inputBox} type="text" placeholder="Start Time" required onChange={(e) => {setStartTime(e.target.value)}} />
                 <input style={inputBox} type="text" placeholder="Stop Time" required onChange={(e) => {setStopTime(e.target.value)}} />
 
@@ -124,6 +125,8 @@ function PlanSchedule() {
                     ))}
                 </select>
 
+                <input style={inputBox} type="text" placeholder="Start Location" required onChange={(e) => {setStrartlocation(e.target.value)}} />
+                <input style={inputBox} type="text" placeholder="Stop Location" required onChange={(e) => {setStoplocation(e.target.value)}} />
                 <input style={inputBox} type="numbers" placeholder="Charge" onChange={(e) => {setCharge(e.target.value)}} />
             </div>
 
