@@ -8,7 +8,7 @@ const Route = () => {
     return (
         <div>
             <div>
-            <p style={topic}>Welcome to Transist Token</p>
+            <p style={topic}>Manage Routes Here</p>
                 <Link to='/viewroute'>
                 <div style={imageRoute}>
                     <img src={RouteView} width={280} />

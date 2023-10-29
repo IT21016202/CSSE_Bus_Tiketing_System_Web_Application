@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import BusRoute from '../images/route.jpg'
-import { getDatabase, ref, set } from 'firebase/database';
+import { getDatabase, ref, set, push } from 'firebase/database';
 
 function AddRoute() {
 
@@ -18,8 +18,10 @@ function AddRoute() {
         e.preventDefault();
 
         //Add route to realtime DB
-        const routeRef = ref(database, 'Route/' + routeNumber)
+        const routeRef = ref(database, 'Route/')
+        const newRouteRef = push(routeRef);
         const routeData = {
+            RoteID: newRouteRef.key,
             RouteNumber: routeNumber,
             StartingPoint: startingPoint,
             Destination: destination,
@@ -31,7 +33,7 @@ function AddRoute() {
             UpdatedAt: new Date().toString(),
         };
 
-        set(routeRef, routeData)
+        set(newRouteRef, routeData)
         .then(() => {
             console.log('Data set to DB');
             alert("Route Added Successfully!");

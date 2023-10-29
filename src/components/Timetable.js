@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function Timetable() {
     return (
         <div>
-            <p style={topic}>Welcome to Transist Token</p>
+            <p style={topic}>Manage Timetables Here</p>
                 <Link to='/viewtimetable'>
                 <div style={imageTimeTable}>
                     <img src={ViewTimetable} width={270} />

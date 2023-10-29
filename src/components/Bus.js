@@ -8,7 +8,7 @@ const Bus = () => {
   return (
     <div>
         <div>
-            <p style={topic}>Welcome to Transist Token</p>
+            <p style={topic}>Manage Buses Here</p>
                 <Link to='/viewBus'>
                 <div style={imageBus}>
                     <img src={ViewBus} width={320} />

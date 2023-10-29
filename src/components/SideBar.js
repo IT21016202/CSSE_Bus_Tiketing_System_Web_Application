@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const SideBar = ({ relaod }) => {
-  useEffect(() => {}, [relaod]);
-
-  const user = localStorage.getItem("user-transport");
-  console.log("side bar", user);
+const SideBar = () => {
+    
+    const user = localStorage.getItem('user-transport');
+    console.log('side bar', user)
 
   return (
     <div>
