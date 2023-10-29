@@ -30,6 +30,7 @@ import DayPassMansgement from "./components/DayPassMansgement";
 import CreditTransactions from "./components/CreditTransactions";
 import AddCredit from "./components/AddCredit";
 import CreditHistory from "./components/CreditHistory";
+import OvercrowdView from "./components/OvercrowdView";
 
 import Login from "./pages/Login";
 
@@ -66,6 +67,7 @@ function App() {
           <Route path="/creditTransactions" element={<CreditTransactions />} />
           <Route path="/addCredit" element={<AddCredit />} />
           <Route path="/creditHistory" element={<CreditHistory />} />
+          <Route path="/overcrowdView" element={<OvercrowdView />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/*" element={<NotFound />} />

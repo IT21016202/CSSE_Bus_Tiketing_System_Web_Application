@@ -7,6 +7,8 @@ function CreditHistory() {
 
   const database = getDatabase();
 
+  const maxAmount = 10000;
+
   useEffect(() => {
     const creditRef = ref(database, "creditTransactions/");
     get(creditRef)
@@ -42,11 +44,11 @@ function CreditHistory() {
   //   }
 
   return (
-    <div >
+    <div>
       <div style={top}>
         <h1 style={add}>Credit History</h1>
       </div>
-      
+
       {Object.values(credit).map((creditData) => (
         <div className="container" style={{ marginTop: "40px" }}>
           <div className="row ">
@@ -88,11 +90,13 @@ function CreditHistory() {
                     <div
                       className="progress-bar l-bg-green"
                       role="progressbar"
-                      data-width="25%"
-                      aria-valuenow="25"
+                      data-width={`${(creditData.Amount / maxAmount) * 100}%`}
+                      aria-valuenow={(creditData.Amount / maxAmount) * 100}
                       aria-valuemin="0"
                       aria-valuemax="100"
-                      style={{ width: "25%" }}
+                      style={{
+                        width: `${(creditData.Amount / maxAmount) * 100}%`,
+                      }}
                     ></div>
                   </div>
                 </div>
@@ -114,4 +118,5 @@ const add = {
   color: "#1D4E89",
   fontWeight: "bold",
 };
+
 export default CreditHistory;
