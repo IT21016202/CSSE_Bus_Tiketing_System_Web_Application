@@ -4,6 +4,7 @@ import "./CreditHistory.css";
 
 function CreditHistory() {
   const [credit, setCredits] = useState({});
+  const [creditBalance, setCreditBalance] = useState(0);
 
   const database = getDatabase();
 
@@ -16,6 +17,23 @@ function CreditHistory() {
         if (snapshot.exists()) {
           const data = snapshot.val();
           setCredits(data);
+
+          
+          // Calculate the credit balance
+          let totalAmount = 0;
+          Object.values(data).forEach((creditData) => {
+            // Convert the amount from string to number
+            const amount = parseFloat(creditData.Amount);
+            totalAmount += amount;
+          });
+          setCreditBalance(totalAmount);
+
+        //  // Calculate the credit balance
+        //  const totalAmount = Object.values(data).reduce(
+        //   (total, creditData) => total + creditData.Amount,
+        //   0
+        // );
+        // setCreditBalance(totalAmount);
         } else {
           console.log("Credit Data Not Found !");
         }
@@ -23,6 +41,31 @@ function CreditHistory() {
       .catch((err) => {
         console.error("Error retrieving credit data:", err);
       });
+
+      
+    // // Fetch the credit balance for the user with name="Nimal"
+    // const usersRef = ref(database, "users");
+    // get(usersRef)
+    //   .then((snapshot) => {
+    //     if (snapshot.exists()) {
+    //       const usersData = snapshot.val();
+    //       const nimalUser = Object.values(usersData).find(
+    //         (user) => user.name === "Nimal"
+    //       );
+
+    //       if (nimalUser && nimalUser.creditBalance !== undefined) {
+    //         // Found the user and credit balance
+    //         setCreditBalance(nimalUser.creditBalance);
+    //       } else {
+    //         console.log("No credit balance found for user 'Nimal'");
+    //       }
+    //     } else {
+    //       console.log("User Data Not Found !");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.error("Error retrieving user data:", err);
+    //   });
   }, []);
 
   function formatDate(timestamp) {
@@ -47,6 +90,7 @@ function CreditHistory() {
     <div>
       <div style={top}>
         <h1 style={add}>Credit History</h1>
+        <h1 style={add}>Credit Balance : Rs.{creditBalance}</h1>
       </div>
 
       {Object.values(credit).map((creditData) => (
