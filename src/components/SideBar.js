@@ -31,7 +31,7 @@ const SideBar = ({ relaod }) => {
             {" "}
             <li style={li}>Reports</li>
           </Link>
-          <Link style={{ textDecoration: "none" }} to="report">
+          <Link style={{ textDecoration: "none" }} to="/creditTransactions">
             {" "}
             <li style={li}>Credit Transactions</li>
           </Link>
